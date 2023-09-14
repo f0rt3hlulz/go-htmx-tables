@@ -1,0 +1,21 @@
+name: Deploy to Remote Server
+
+on:
+  push:
+    branches:
+      - main  # Здесь укажите вашу основную ветку
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Используем Ubuntu
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Deploy to Server
+        run: |
+          ssh-keyscan -t 185.70.187.34 >> ~/.ssh/known_hosts
+          scp -r * root@y185.70.187.34:/home/root/
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}  # Добавьте ваш приватный SSH-ключ в настройках репозитория
