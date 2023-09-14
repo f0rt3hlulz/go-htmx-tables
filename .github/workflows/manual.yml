@@ -10,12 +10,30 @@ jobs:
     runs-on: ubuntu-latest  # Используем Ubuntu
     
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Copy default.conf via ssh
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          source: "/*"
+          target: "/home/root/"
+          strip_components: 2
+
+      - name: executing remote ssh commands to deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
       
       - name: Deploy to Server
         run: |
-          ssh-keyscan -t 185.70.187.34 >> ~/.ssh/known_hosts
-          scp -r * root@y185.70.187.34:/home/root/
+          ls
+          pwd
+          go build
+          ./go-htmx-tables
+
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}  # Добавьте ваш приватный SSH-ключ в настройках репозитория
