@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead th {
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            text-align: center;
+            padding: 8px;
+        }
+
+        tbody td {
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+
+        .criteria-cell {
+            text-align: center;
+        }
+
+        .score-cell {
+            text-align: center;
+        }
+
+        .total-cell {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Стиль для радио-кнопок */
+        .radio-buttons {
+            display: flex;
+            flex-direction: row;
+            gap: 20px; /* Расстояние между кнопками */
+            margin-bottom: 20px; /* Отступ снизу */
+        }
+
+        .radio-buttons label {
+            display: flex;
+            align-items: center; /* Выравнивание текста по вертикали */
+            padding: 5px 10px; /* Поля вокруг текста */
+            border: 1px solid #ccc;
+            border-radius: 5px; /* Закругленные углы */
+            cursor: pointer;
+        }
+
+        .radio-buttons label:hover {
+            background-color: #f2f2f2; /* Изменение фона при наведении */
+        }
+
+        .radio-buttons input[type="radio"] {
+            display: none; /* Скрытие стандартных радио-кнопок */
+        }
+
+        .radio-buttons input[type="radio"]:checked + label {
+            background-color: #007bff; /* Цвет фона для выбранной кнопки */
+            color: white; /* Цвет текста для выбранной кнопки */
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>HTMX Tables</title>
+    <script src="/static/htmx.min.js"></script>
+</head>
+<body>
+    <h1>Выберите таблицу</h1>
+    
+    <!-- Радио-кнопки в одном ряду -->
+    <div class="radio-buttons">
+        <label>
+            <input type="radio" name="table" value="table1"> Оснащение рабочего места для обработки рук
+        </label>
+        <label>
+            <input type="radio" name="table" value="table2"> Техника обработки рук
+        </label>
+        <label>
+            <input type="radio" name="table" value="table3"> Наличие антисептика в зонах обязательной обработки рук
+        </label>
+        <label>
+            <input type="radio" name="table" value="table4"> Эпидемиологическая безопасность при манипуляциях и уходе за пациентом (этап обработки рук)
+        </label>
+        <label>
+            <input type="radio" name="table" value="table5"> Организация системы обработки рук
+        </label>
+    </div>
+
+    <div id="table-container">
+        <!-- Здесь будет отображаться выбранная таблица -->
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
